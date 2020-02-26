@@ -1,8 +1,10 @@
 from __future__ import division, print_function, absolute_import
 
 import glob
+import time
 from os import remove
 from os.path import basename
+from datetime import datetime as dt
 
 import numpy as np
 
@@ -53,7 +55,7 @@ if __name__ == "__main__":
         print("Sleeping for %f seconds..." % (captureintervalsec))
         i = 0
         while i < captureintervalsec:
-            sleep(1)
+            time.sleep(1)
             if (i + 1) % 5 == 0:
                 print(".")
             i += 1
