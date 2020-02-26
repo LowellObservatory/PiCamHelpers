@@ -38,8 +38,8 @@ RUN mkdir /home/lig/www/ && mkdir /home/lig/snaps/ && \
 
 WORKDIR /home/lig/
 
-COPY --chown=lig:lig utils.py .
-COPY --chown=lig:lig utils_logs.py .
+# NEED TO ADD IN LIGMOS HERE
+# NEED TO ADD IN PiCamHelpers pip install here
 
 COPY --chown=lig:lig snapper.py .
 COPY --chown=lig:lig streamer.py .
