@@ -1,12 +1,7 @@
 from __future__ import division, print_function, absolute_import
 
-import glob
 import time
-from os import remove
-from os.path import basename
 from datetime import datetime as dt
-
-import numpy as np
 
 from ligmos import utils
 
