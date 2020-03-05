@@ -30,7 +30,7 @@ if __name__ == "__main__":
     utils.logs.setup_logging(logName="./logs/pimcpiface.txt", nLogs=10)
 
     while True:
-        piCamCapture(outloc, debug=True)
+        piCamCapture(camSettings, outloc, debug=True)
 
         # Cull the images to the last XX days worth
         print("Searching for old files...")

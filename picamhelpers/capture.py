@@ -61,7 +61,7 @@ def piCamInit(camSettings):
     return camera
 
 
-def piCamCapture(camSettings, debug=False, retries=10):
+def piCamCapture(camSettings, outloc, debug=False, retries=10):
     now = dt.utcnow()
     nowstr = now.strftime("%Y%m%d_%H%M%S")
     print("Starting capture at %s" % (nowstr))
@@ -83,7 +83,7 @@ def piCamCapture(camSettings, debug=False, retries=10):
             sleep(intervalRetries)
 
     if camera is not None:
-        outname = "./%s.png" % (nowstr)
+        outname = "%s/%s.png" % (outloc, nowstr)
 
         # If camera.shutter_speed is 0, camera.exposure_speed will be the
         #   actual/used value determined during the above sleeps
