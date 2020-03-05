@@ -14,7 +14,7 @@ def main():
     """
     """
     # Read in our config file
-    confFile = './config/snapper.conf'
+    confFile = './config/picamSettings.conf'
     # We ignore the second return value since searchCommon is False
     camSettings, _ = utils.confparsers.parseConfig(confFile, piCamSettings,
                                                    passfile=None,
