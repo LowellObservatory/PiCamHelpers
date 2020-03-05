@@ -10,13 +10,20 @@ from picamhelpers.classes import piCamSettings
 from picamhelpers.utils import copyStaticFilenames
 
 
-if __name__ == "__main__":
+def main():
+    """
+    """
     # Read in our config file
     confFile = './config/snapper.conf'
-    camSettings = utils.confparsers.parseConfig(confFile, piCamSettings,
-                                                passfile=None,
-                                                searchCommon=False,
-                                                enableCheck=False)
+    # We ignore the second return value since searchCommon is False
+    camSettings, _ = utils.confparsers.parseConfig(confFile, piCamSettings,
+                                                   passfile=None,
+                                                   searchCommon=False,
+                                                   enableCheck=False)
+
+    # We're cheating by grabbing the relevant config section directly
+    #   but it's ok, I'm abusing my own API so it's fine.
+    camSettings = camSettings['picam']
 
     maxagehrs = 24.
     captureintervalsec = 60.
@@ -44,7 +51,7 @@ if __name__ == "__main__":
 
         # Copy the static files that get animated
         print("Copying new files to static names for animation...")
-        copyStaticFilenames(young, lout, staticname, nstaticfiles)
+        copyStaticFilenames(nstaticfiles, lout, staticname, young)
 
         # Sleep for sleeptime in 1 second intervals
         print("Sleeping for %f seconds..." % (captureintervalsec))
@@ -54,3 +61,7 @@ if __name__ == "__main__":
             if (i + 1) % 5 == 0:
                 print(".")
             i += 1
+
+
+if __name__ == "__main__":
+    main()
