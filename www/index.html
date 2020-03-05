@@ -2,9 +2,61 @@
   <!-- HAniS stuff -->
   <script type="text/javascript" src="hanis_min.js"></script>
   <script type="text/javascript" src="hancon.js"></script>
+
+  <!-- 7/14/16 Segment display clock -->
+  <!-- http://www.3quarks.com/en/SegmentDisplay/index.html -->
+  <!-- I think this one is only for old IE compatibility? -->
+  <script type="text/javascript" src="excanvas.js"></script>
+  <script type="text/javascript" src="segment-display.js"></script>
+  <script type="text/javascript">
+    var display = new SegmentDisplay("14segClock");
+    display.segmentCount    = 14;
+    display.cornerType      = 0;
+    display.digitHeight     = 30;
+    display.digitWidth      = 20;
+    display.digitDistance   = 3.5;
+    display.displayAngle    = 5.0;
+    display.segmentWidth    = 3.0;
+    display.segmentDistance = 0.2;
+
+    // display.pattern         = "##:##:## ####";
+    display.pattern         = "#############:##:## ####";
+    display.colorOn         = "#3498db";
+    display.colorOff        = "#0a1e2b";
+    display.draw();
+
+    animate();
+
+    function animate() {
+      var time    = new Date();
+      var year    = time.getUTCFullYear();
+      var day     = time.getUTCDate();
+      // Because month is zero-indexed, for some insane reason
+      var month   = time.getUTCMonth() + 1;
+      var hours   = time.getUTCHours();
+      var minutes = time.getUTCMinutes();
+      var seconds = time.getUTCSeconds();
+      // For the full date + time
+      var value   = year + "-"
+                  + ((month < 10) ? '0' : '') + month + "-"
+                  + ((day < 10) ? '0' : '') + day + " "
+                  + ((hours < 10) ? '0' : '') + hours
+                  + ':' + ((minutes < 10) ? '0' : '') + minutes
+                  + ':' + ((seconds < 10) ? '0' : '') + seconds
+                  + "  UTC";
+      // For just the time
+      // var value   = ((hours < 10) ? ' ' : '') + hours
+      //             + ':' + ((minutes < 10) ? '0' : '') + minutes
+      //             + ':' + ((seconds < 10) ? '0' : '') + seconds
+      //             + "  UTC";
+      display.setValue(value);
+      window.setTimeout('animate()', 100);
+  }
+  </script>
 </head>
 
-<body onload="HAniS.setup(han3d, 'han3ddiv')" style="margin:0; padding:0;">
+<body onload="HAniS.setup(han3d, 'han3ddiv')" style="background-color:black; margin:0; padding:0;">
+  <canvas id='14segClock' width="475" height="50"></canvas>
   <br>
   <a href="/snapshots/">Pictures from the last 24h are here</a>
   <br>
