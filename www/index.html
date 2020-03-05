@@ -12,15 +12,15 @@
     var display = new SegmentDisplay("14segClock");
     display.segmentCount    = 14;
     display.cornerType      = 0;
-    display.digitHeight     = 30;
-    display.digitWidth      = 20;
-    display.digitDistance   = 3.5;
+    display.digitHeight     = 60;
+    display.digitWidth      = 40;
+    display.digitDistance   = 4.5;
     display.displayAngle    = 5.0;
-    display.segmentWidth    = 3.0;
-    display.segmentDistance = 0.2;
+    display.segmentWidth    = 5.0;
+    display.segmentDistance = 0.5;
 
     // display.pattern         = "##:##:## ####";
-    display.pattern         = "#############:##:## ####";
+    display.pattern         = "##########################:##:## ####";
     display.colorOn         = "#3498db";
     display.colorOff        = "#0a1e2b";
     display.draw();
@@ -37,7 +37,7 @@
       var minutes = time.getUTCMinutes();
       var seconds = time.getUTCSeconds();
       // For the full date + time
-      var value   = year + "-"
+      var value   = "CURRENT TIME " + year + "-"
                   + ((month < 10) ? '0' : '') + month + "-"
                   + ((day < 10) ? '0' : '') + day + " "
                   + ((hours < 10) ? '0' : '') + hours
@@ -53,14 +53,37 @@
       window.setTimeout('animate()', 100);
   }
   </script>
+  <style>
+    a:link, a:visited {
+      color: white;
+      background-color: #0a1e2b;
+      padding: 15px 25px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    a:hover {
+      background-color: #3498db;
+      text-decoration: none;
+    }
+
+    a:active {
+      background-color: transparent;
+      text-decoration: underline;
+    }
+    </style>
 </head>
 
 <body onload="HAniS.setup(han3d, 'han3ddiv')" style="background-color:black; margin:0; padding:0;">
-  <canvas id='14segClock' width="475" height="50"></canvas>
+  <center>
+    <canvas width="800" height="120"></canvas>
+  </center>
   <br>
-  <a href="/snapshots/">Pictures from the last 24h are here</a>
+  <a href="/snapshots/">Last 24 Hours</a>
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <a href="/snapshots/anim">Animation Frames</a>
   <br>
-  <a href="/snapshots/anim">Pictures from the above animation are here</a>
   <!-- HAniS weather sequence displayer -->
   <!-- https://www.ssec.wisc.edu/hanis/ -->
   <div id="han3ddiv" style="position:relative;
