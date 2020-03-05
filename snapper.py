@@ -51,7 +51,7 @@ def main():
 
         # Copy the static files that get animated
         print("Copying new files to static names for animation...")
-        copyStaticFilenames(nstaticfiles, lout, staticname, young)
+        copyStaticFilenames(young, lout, staticname, nstaticfiles)
 
         # Sleep for sleeptime in 1 second intervals
         print("Sleeping for %f seconds..." % (captureintervalsec))
