@@ -27,4 +27,5 @@ class piCamSettings(object):
         self.meter_mode = 'matrix'
         self.exposure_compensation = 25
         self.image_denoise = False
+        self.interval = 150
         self.enabled = True

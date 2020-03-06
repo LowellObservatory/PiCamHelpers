@@ -26,7 +26,6 @@ def main():
     camSettings = camSettings['picam']
 
     maxagehrs = 24.
-    captureintervalsec = 60.
     outloc = "./snaps/"
 
     lout = outloc + "/anim/"
@@ -36,7 +35,10 @@ def main():
     # Start logging to a file
     utils.logs.setup_logging(logName="./logs/pimcpiface.txt", nLogs=10)
 
-    while True:
+    # Set up our signal
+    runner = utils.common.HowtoStopNicely()
+
+    while runner.halt is False:
         piCamCapture(camSettings, outloc, debug=True)
 
         # Cull the images to the last XX days worth
@@ -54,13 +56,19 @@ def main():
         copyStaticFilenames(young, lout, staticname, nstaticfiles)
 
         # Sleep for sleeptime in 1 second intervals
-        print("Sleeping for %f seconds..." % (captureintervalsec))
+        print("Sleeping for %f seconds..." % (camSettings.interval))
         i = 0
-        while i < captureintervalsec:
-            time.sleep(1)
-            if (i + 1) % 5 == 0:
-                print(".")
-            i += 1
+        if runner.halt is False:
+            print("Starting a big sleep")
+            # Sleep for bigsleep, but in small chunks to check abort
+            for _ in range(camSettings.interval):
+                time.sleep(1)
+                if (i + 1) % 5 == 0:
+                    print(".", end=None)
+                i += 1
+                if runner.halt is True:
+                    break
+        print()
 
 
 if __name__ == "__main__":
