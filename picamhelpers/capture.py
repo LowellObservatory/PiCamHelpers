@@ -95,7 +95,7 @@ def piCamCapture(camSettings, outloc, debug=False, retries=10):
         timeAnnotate = nowTime.strftime("%Y-%m-%d %H:%M:%S UTC")
 
         # This has to happen *before* the capture!
-        annotation = "%s, %.3f sec" % (timeAnnotate, round(expspeed, 4))
+        annotation = "%s, %.4f sec" % (timeAnnotate, round(expspeed, 4))
         camera.annotate_background = Color("black")
         camera.annotate_text = annotation
 
