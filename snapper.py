@@ -69,7 +69,7 @@ def main():
             # Sleep for bigsleep, but in small chunks to check abort
             for _ in range(camSettings.interval):
                 time.sleep(1)
-                if (i + 1) % 5 == 0:
+                if (i + 1) % 30 == 0:
                     print(".", end=None)
                 i += 1
                 if runner.halt is True:
