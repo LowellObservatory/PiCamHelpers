@@ -64,7 +64,7 @@ def piCamInit(camSettings):
 def piCamCapture(camSettings, outloc, debug=False, retries=10):
     startTime = dt.utcnow()
     startTimeStr = startTime.strftime("%Y%m%d_%H%M%S")
-    print("Starting capture at %s" % (startTimeStr))
+    print("Entering capture sequence at %s" % (startTimeStr))
 
     # Init the camera. Try a few times if it's busy
     retryCounter = 0
