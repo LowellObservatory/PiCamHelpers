@@ -50,7 +50,7 @@ def piCamInit(camSettings):
         camera.image_denoise = camSettings.image_denoise
 
         print("Allowing camera to reticulate some splines...")
-        sleep(15)
+        sleep(40)
 
         # To fix exposure gains, let analog_gain and digital_gain settle on
         #   reasonable values, then set exposure_mode to 'off'.
