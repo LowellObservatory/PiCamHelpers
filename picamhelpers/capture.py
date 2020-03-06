@@ -62,9 +62,9 @@ def piCamInit(camSettings):
 
 
 def piCamCapture(camSettings, outloc, debug=False, retries=10):
-    now = dt.utcnow()
-    nowstr = now.strftime("%Y%m%d_%H%M%S")
-    print("Starting capture at %s" % (nowstr))
+    startTime = dt.utcnow()
+    startTimeStr = startTime.strftime("%Y%m%d_%H%M%S")
+    print("Starting capture at %s" % (startTimeStr))
 
     # Init the camera. Try a few times if it's busy
     retryCounter = 0
@@ -83,22 +83,25 @@ def piCamCapture(camSettings, outloc, debug=False, retries=10):
             sleep(intervalRetries)
 
     if camera is not None:
-        outname = "%s/%s.png" % (outloc, nowstr)
-
         # If camera.shutter_speed is 0, camera.exposure_speed will be the
         #   actual/used value determined during the above sleeps
         print("exp: %f, shut: %f" % (camera.shutter_speed,
                                      camera.exposure_speed))
         expspeed = round(camera.exposure_speed/1e6, 6)
 
-        annotation = "Time: %s\nShutterSpeed: %s sec" % (nowstr, str(expspeed))
+        # Actually do the capture now!
+        nowTime = dt.utcnow()
+        nowTimeStr = nowTime.strftime("%Y%m%d_%H%M%S")
+        timeAnnotate = nowTime.strftime("%Y-%m-%d %H:%M:%S UTC")
 
         # This has to happen *before* the capture!
+        annotation = "%s, %s sec exposure" % (timeAnnotate, str(expspeed))
         camera.annotate_background = Color("black")
         camera.annotate_text = annotation
 
-        # Actually do the capture now!
-        print("Starting capture...")
+        print("Starting capture at %s" % (nowTimeStr))
+
+        outname = "%s/%s.png" % (outloc, nowTimeStr)
         camera.capture(outname)
         print("Capture complete!")
 
