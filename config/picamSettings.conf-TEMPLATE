@@ -10,4 +10,5 @@ meter_mode = matrix
 exposure_compensation = 25
 image_denoise = False
 interval = 150
+savepath = ./
 enabled = True

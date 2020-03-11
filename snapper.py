@@ -32,8 +32,7 @@ def main():
         camSettings.interval = 90
 
     maxagehrs = 24.
-    outloc = "./snaps/"
-
+    outloc = camSettings.savepath
     lout = outloc + "/anim/"
     staticname = 'pizini'
     nstaticfiles = 24
