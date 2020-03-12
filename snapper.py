@@ -34,11 +34,11 @@ def main():
     maxagehrs = 24.
     outloc = camSettings.savepath
     lout = outloc + "/anim/"
-    staticname = 'pizini'
+    staticname = 'snapper'
     nstaticfiles = 24
 
     # Start logging to a file
-    utils.logs.setup_logging(logName="./logs/pimcpiface.txt", nLogs=10)
+    utils.logs.setup_logging(logName="./logs/snapper.log", nLogs=10)
 
     # Set up our signal
     runner = utils.common.HowtoStopNicely()
